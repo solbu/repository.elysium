@@ -1,3 +1,6 @@
+[B]2017.06.10[/B]
+- Official release of rebranded addon
+
 [B]2017.06.08[/B]
 - Rebrand from Zen to Elysium
 - Disabled Cinemabox
