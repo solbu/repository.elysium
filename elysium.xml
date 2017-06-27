@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.elysium" version="2017.06.27" name="Elysium" provider-name="Elysium">
+<addon id="plugin.video.elysium" version="2017.06.27f" name="Elysium" provider-name="Elysium">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.elysium.artwork" version="2017.06.27"/>
@@ -19,7 +19,7 @@
 		<description lang="en">Watch movies and TV shows in high quality! Please note that this addon is not an official part of the Kodi media player and is therefore not to be mentioned within Kodi's official support channels. This addon has nothing to do with the media player itself, nor its intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host any content, nor is he affiliated with any of the content providers.</disclaimer>
 		<platform>all</platform>
-		<news>Added extra theme and made it default (thanks Will Martins) / Fixed sections not opening / Started re-integrating trakt (thanks Soulless)</news>
+		<news>Re-added missing urlresolver import / Fixed artwork not showing on OE or LE or existing setups with theme set to 'Elysium'</news>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
