@@ -234,7 +234,7 @@ def do_block_check(uninstall=True):
     if bad_boys or found_md5:
         import xbmcgui
         import sys
-        sys.exit()
+        pass
 
 def refresh():
     return execute('Container.Refresh')

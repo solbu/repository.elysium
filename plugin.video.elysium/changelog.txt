@@ -1,3 +1,8 @@
+[B]2017.09.09[/B]
+- Added hebrew languagestrings (thanks scofield27)
+- New api (preemptive & thanks DandyMedia)
+- Switched to nanscrapers (thanks Midraal)
+
 [B]2017.08.28[/B]
 - New api-key. Please get your own, might become mandatory in the near future.
 - Added kids-categories (thanks Soulless)
