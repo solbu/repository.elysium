@@ -1,7 +1,7 @@
-[B]2017.09.09[/B]
-- Added hebrew languagestrings (thanks scofield27)
-- New api (preemptive & thanks DandyMedia)
-- Switched to nanscrapers (thanks Midraal)
+[B]2017.10.14[/B]
+- Added Hebrew language strings (thanks Dambledore)
+- New api-key. Please get your own asap as it will become mandatory in next update
+- Switched to NanScrapers (thanks Midraal)
 
 [B]2017.08.28[/B]
 - New api-key. Please get your own, might become mandatory in the near future.

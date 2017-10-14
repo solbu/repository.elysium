@@ -55,40 +55,40 @@ elif action == 'alterSources'          : sources().alterSources(url, meta)
 elif action == 'artwork'               : control.artwork()
 elif action == 'authTrakt'             : trakt.authTrakt()
 elif action == 'backupwatchlist'       :
-	fn                    = os.path.join(datapath, 'favourites.db')
-	if os.path.exists(fn):
-		backupdir         = control.setting('remote_path')
-		if not backupdir == '':
-			to_backup     = xbmc.translatePath(os.path.join('special://', 'profile/addon_data/'))
-			rootlen       = len(datapath)
-			backup_ui_zip = xbmc.translatePath(os.path.join(backupdir, 'elysium_watchlist.zip'))
-			zipobj        = zipfile.ZipFile(backup_ui_zip , 'w', zipfile.ZIP_DEFLATED)
-			zipobj.write(fn, fn[rootlen:])
-			dialog.ok('Backup Watchlist', 'Backup complete', '', '')
-		else:
-			dialog.ok('Backup Watchlist', 'No backup location found: Please setup your Backup location in the addon settings', '', '')
-			xbmc.executebuiltin('RunPlugin(%s?action=openSettings&query=7.0)' % sys.argv[0])
+        fn                    = os.path.join(datapath, 'favourites.db')
+        if os.path.exists(fn):
+                backupdir         = control.setting('remote_path')
+                if not backupdir == '':
+                        to_backup     = xbmc.translatePath(os.path.join('special://', 'profile/addon_data/'))
+                        rootlen       = len(datapath)
+                        backup_ui_zip = xbmc.translatePath(os.path.join(backupdir, 'elysium_watchlist.zip'))
+                        zipobj        = zipfile.ZipFile(backup_ui_zip , 'w', zipfile.ZIP_DEFLATED)
+                        zipobj.write(fn, fn[rootlen:])
+                        dialog.ok('Backup Watchlist', 'Backup complete', '', '')
+                else:
+                        dialog.ok('Backup Watchlist', 'No backup location found: Please setup your Backup location in the addon settings', '', '')
+                        xbmc.executebuiltin('RunPlugin(%s?action=openSettings&query=7.0)' % sys.argv[0])
 elif action == 'calendar'              : episodes.episodes().calendar(url)
 elif action == 'calendars'             : episodes.episodes().calendars()
 elif action == 'channels'              : channels.channels().get()
 elif action == 'clearCache'            : navigator.navigator().clearCache()
 elif action == 'clearProgress':
-	progressFile = os.path.join(datapath, 'progress.db')
-	if os.path.exists(progressFile):
-		if control.yesnoDialog(control.lang(32056).encode('utf-8'), '', ''):
-			try: 
-				os.remove(progressFile)
-				dialog.ok('Clear Progress', 'Clear Progress Complete', '', '')
-			except:
-				dialog.ok('Clear Progress', 'There was an error Deleting the Database', '', '')
-	else:
-		control.infoDialog(control.lang2(161).encode('utf-8'), heading='"Progress Database"', sound=False, icon=thumbnail)
+        progressFile = os.path.join(datapath, 'progress.db')
+        if os.path.exists(progressFile):
+                if control.yesnoDialog(control.lang(32056).encode('utf-8'), '', ''):
+                        try:
+                                os.remove(progressFile)
+                                dialog.ok('Clear Progress', 'Clear Progress Complete', '', '')
+                        except:
+                                dialog.ok('Clear Progress', 'There was an error Deleting the Database', '', '')
+        else:
+                control.infoDialog(control.lang2(161).encode('utf-8'), heading='"Progress Database"', sound=False, icon=thumbnail)
 elif action == 'clearSources'          : sources().clearSources()
 elif action == 'deleteFavourite'       : favourites.deleteFavourite(meta, content)
 elif action == 'deleteProgress'        : favourites.deleteProgress(meta, content)
 elif action == 'download':
-	try   : downloader.download(name, image, sources().sourcesResolve(json.loads(source)[0], True))
-	except: pass
+        try   : downloader.download(name, image, sources().sourcesResolve(json.loads(source)[0], True))
+        except: pass
 elif action == 'downloadNavigator'     : navigator.navigator().downloads()
 elif action == 'episodePlaycount'      : playcount.episodes(imdb, tvdb, season, episode, query)
 elif action == 'episodes'              : episodes.episodes().get(tvshowtitle, year, imdb, tvdb, season, episode)
@@ -123,10 +123,10 @@ elif action == 'kidsCollections'       : navigator.navigator().kidsCollections()
 elif action == 'holidayCollections'    : navigator.navigator().holidayCollections()
 elif action == 'openSettings'          : control.openSettings(query)
 elif action == 'play':
-	select = control.setting('hosts.mode')
-	if   select == '3' and 'plugin' in control.infoLabel('Container.PluginName'): sources().play_dialog(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
-	elif select == '4' and 'plugin' in control.infoLabel('Container.PluginName'): sources().play_dialog_list(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
-	else                                                                        : sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+        select = control.setting('hosts.mode')
+        if   select == '3' and 'plugin' in control.infoLabel('Container.PluginName'): sources().play_dialog(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+        elif select == '4' and 'plugin' in control.infoLabel('Container.PluginName'): sources().play_dialog_list(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+        else                                                                        : sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
 elif action == 'play_alter'            : sources().play_alter(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta)
 elif action == 'play_library'          : sources().play_library(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
 elif action == 'playItem'              : sources().playItem(title, source)
@@ -134,14 +134,14 @@ elif action == 'queueItem'             : control.queueItem()
 elif action == 'rdAuthorize'           : debrid.rdAuthorize()
 elif action == 'refresh'               : control.refresh()
 elif action == 'restorewatchlist':
-	zipdir = control.setting('remote_restore_path')
-	if not zipdir == '':
-		with zipfile.ZipFile(zipdir, "r") as z:
-			z.extractall(datapath)
-			dialog.ok('Restore Watchlist', 'Restore complete', '', '')
-	else:
-		dialog.ok('Restore Watchlist', 'No item found: Please select your zipfile location in the addon settings', '', '')
-		xbmc.executebuiltin('RunPlugin(%s?action=openSettings&query=7.1)' % sys.argv[0])
+        zipdir = control.setting('remote_restore_path')
+        if not zipdir == '':
+                with zipfile.ZipFile(zipdir, "r") as z:
+                        z.extractall(datapath)
+                        dialog.ok('Restore Watchlist', 'Restore complete', '', '')
+        else:
+                dialog.ok('Restore Watchlist', 'No item found: Please select your zipfile location in the addon settings', '', '')
+                xbmc.executebuiltin('RunPlugin(%s?action=openSettings&query=7.1)' % sys.argv[0])
 elif action == 'searchNavigator'       : navigator.navigator().search()
 elif action == 'seasons'               : episodes.seasons().get(tvshowtitle, year, imdb, tvdb)
 elif action == 'ShowChangelog'         : changelog.get()
@@ -174,4 +174,5 @@ elif action == 'kidstvCollections'     : navigator.navigator().kidstvCollections
 elif action == 'tvUserlists'           : tvshows.tvshows().userlists()
 elif action == 'tvWidget'              : episodes.episodes().widget()
 elif action == 'urlresolversettings'   : urlresolver.display_settings()
+elif action == 'nanscrapersettings'    : xbmcaddon.Addon('script.module.nanscrapers').openSettings()
 elif action == 'viewsNavigator'        : navigator.navigator().views()

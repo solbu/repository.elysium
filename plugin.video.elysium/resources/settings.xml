@@ -31,7 +31,7 @@
 		<setting type="lsep" label="32343"/>
 		<setting id="bookmarks" type="bool" label="32344" default="true"/>
 	</category>
-	<category id="general" label="Accounts">
+	<category id="general" label="Accounts & Providers">
 		<setting type="lsep" label="Alluc -  Username and Password are Case Sensitive"/>
 		<setting id="enable_alluc" type="bool" label="Enable Alluc Sources" default="false"/>
 		<setting id="alluc_username"  type="text" label="Username" default="" visible="!eq(-1,false)"/>
@@ -40,11 +40,14 @@
 		<setting id="alluc_max_results" type="slider" label="Max Results for Search" default="100" range="5,200" option="int" visible="!eq(-4,false)"/>
 		<setting type="lsep" label="TMDB API KEY"/>
 		<setting id="tmdb_apikey" type="text" label="api key" default="" visible="true"/>
+		<setting id="debridsources" type="bool" label="Enable Debrid Providers" default="false"/>
+		<setting id="urlresolver" type="action" label="Open URL-resolver settings" option="close" action="RunPlugin(plugin://plugin.video.elysium/?action=urlresolversettings)"/>
+		<setting id="nanscraper" type="action" label="Open NanScraper settings" option="close" action="RunPlugin(plugin://plugin.video.elysium/?action=nanscrapersettings)"/>
 <!--		<setting type="lsep" label="Trakt"/>
 		<setting id="trakt.user" type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.elysium/?action=authTrakt)"/>
 		<setting id="trakt.token" type="text" option="hidden" visible="false" label="" default=""/>
 		<setting id="trakt.refresh" type="text" option="hidden" visible="false" label="" default=""/>-->
-	</category>
+<!--	</category>
 	<category label="Free Providers">
 		<setting id="provider.library" type="bool" label="Include Library Items" default="true"/>
 		<setting type="lsep" label="Free Providers"/>
@@ -96,7 +99,6 @@
 		<setting id="provider.watchcartoon" type="bool" label="Watchcartoon" default="true"/>
 	</category>
 	<category label="Debrid Providers">
-		<setting id="debridsources" type="bool" label="Enable Debrid Providers" default="false"/>
 		<setting type="lsep" label="------- Debrid Providers -------"/>
 		<setting id="provider.allrls" type="bool" label="Allrls" default="true"/>
 		<setting id="provider.bmoviez" type="bool" label="Bmoviez" default="true"/>
@@ -122,7 +124,7 @@
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true"/>
 		<setting id="provider.twoddl" type="bool" label="Twoddl" default="true"/>
 		<setting id="twoddl_base"  type="text" label=" - Base Url" default="http://best2ddl.net" visible="!eq(-1,false)"/>
-		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true"/>
+		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true"/>-->
 	</category>
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false"/>

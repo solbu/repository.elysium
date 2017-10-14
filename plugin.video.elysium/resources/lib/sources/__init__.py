@@ -681,19 +681,43 @@ class sources:
                     tvdb,
                     timeout=timeout,
                     enable_debrid=allow_debrid)
+        thread = workers.Thread(self.get_nan_sources, links_scraper,
+                                progressDialog)
 
+        thread.start()
+        for i in range(0, timeout * 2):
+            try:
+                if xbmc.abortRequested:
+                    return sys.exit()
+                try:
+                    if progressDialog.iscanceled():
+                        break
+                except:
+                    pass
+                if not thread.is_alive(): break
+                time.sleep(0.5)
+            except:
+                pass
+
+        try:
+            progressDialog.close()
+        except:
+            pass
+
+        self.sourcesFilter()
+
+        return self.sources
+
+    def get_nan_sources(self, links_scraper, progressDialog):
+        num_scrapers = len(nanscrapers.relevant_scrapers())
+        index = 0
         string1 = "Time Elapsed %s"
         string2 = control.lang(32405).encode('utf-8')
         string3 = control.lang(32406).encode('utf-8')
         counthd = 0
         count1080 = 0
         countSD = 0
-
-        num_scrapers = len(nanscrapers.relevant_scrapers())
-        index = 0
-
-        try:
-            for scraper_links in links_scraper():
+        for scraper_links in links_scraper():
                 try:
                     if xbmc.abortRequested:
                         return sys.exit()
@@ -702,7 +726,6 @@ class sources:
 
                     index = index + 1
                     percent = int((index * 100) / num_scrapers)
-                    #progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), , str(string5))
                     if scraper_links is not None:
                         random.shuffle(scraper_links)
                     for scraper_link in scraper_links:
@@ -739,29 +762,12 @@ class sources:
                             pass
                 except:
                     pass
-        except:
-            pass
-
-        try:
-            progressDialog.close()
-        except:
-            pass
-
-        self.sourcesFilter()
-
-        return self.sources
-
 
     def prepareSources(self):
         try:
             control.makeFile(control.dataPath)
 
             self.sourceFile = control.providercacheFile
-
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_url (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""rel_url TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
         except:
             pass
 
@@ -775,26 +781,6 @@ class sources:
     def getMovieSource(self, title, year, imdb, source, call):
         source = cleantitle_get(str(source))
         type = "movie"
-        try:
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
-        except:
-            pass
-
-        try:
-            sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title),year, imdb))
-            match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[8])))
-            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-            update = abs(t2 - t1) > 60
-            if update == False:
-                sources = json.loads(match[7])
-                return self.sources.extend(sources)
-        except:
-            pass
-
 
         try:
             url = None
@@ -808,9 +794,6 @@ class sources:
             sources = call.sources(url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title), year, imdb))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-            dbcon.commit()
         except:
             pass
 
@@ -818,26 +801,6 @@ class sources:
     def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, source, call):
 
         source = cleantitle_get(str(source))
-        try:
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
-        except:
-            pass
-
-        type = "episode"
-        try:
-            sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
-            match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[8])))
-            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-            update = abs(t2 - t1) > 60
-            if update == False:
-                sources = json.loads(match[7])
-                return self.sources.extend(sources)
-        except:
-            pass
         try:
             url = None
             if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, year)
@@ -857,9 +820,6 @@ class sources:
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, tvdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-            dbcon.commit()
         except:
             pass
 
@@ -878,27 +838,6 @@ class sources:
         type = "movie"
 
         try:
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
-        except:
-            pass
-
-        try:
-            sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title),year, imdb))
-            match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[8])))
-            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-            update = abs(t2 - t1) > 60
-            if update == False:
-                sources = json.loads(match[7])
-                return self.sources.extend(sources)
-        except:
-            pass
-
-
-        try:
             url = None
             if url == None: url = call.movie(imdb, title, year)
             if url == None: raise Exception()
@@ -910,16 +849,8 @@ class sources:
             sources = call.sources(url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND title  = '%s' AND year  = '%s' AND imdb_id = '%s'" % (source, type, cleantitle_get(title), year, imdb))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-            dbcon.commit()
         except:
             pass
-
-
-
-
-
 
         return sources
 
@@ -934,27 +865,7 @@ class sources:
                         source = r
         else: source = "Elysium"
 
-
-        try:
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""type TEXT, ""title TEXT, ""year TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, type, title, year, imdb_id, season, episode)"");")
-        except:
-            pass
-
         type = "episode"
-        try:
-            sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
-            match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[8])))
-            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-            update = abs(t2 - t1) > 60
-            if update == False:
-                sources = json.loads(match[7])
-                return self.sources.extend(sources)
-        except:
-            pass
         try:
             url = None
             if url == None: url = call.tvshow(imdb, tvdb, tvshowtitle, year)
@@ -974,9 +885,6 @@ class sources:
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
             if sources == None: raise Exception()
             self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND type = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, type, tvdb, season, episode))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?, ?, ?, ?)", (source, type, cleantitle_get(title), year, tvdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-            dbcon.commit()
         except:
             pass
 
@@ -1164,7 +1072,7 @@ class sources:
                 # for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
                 # provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
 
-            source = __import__(provider, globals(), locals(), [], -1).source()
+            #source = __import__(provider, globals(), locals(), [], -1).source()
             u = url = item["url"]
 
             if url == None: raise Exception()
@@ -1179,8 +1087,6 @@ class sources:
                                 else: hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=True)
                                 if hmf.valid_url() == True: url = hmf.resolve()
 
-
-
             if url == False or url == None: raise Exception()
 
             ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
@@ -1191,6 +1097,8 @@ class sources:
             headers = urllib.quote_plus(headers).replace('%3D', '=') if ' ' in headers else headers
             headers = dict(urlparse.parse_qsl(headers))
 
+            xbmc.log("url3:" + repr(url), xbmc.LOGNOTICE)
+
 
             if url.startswith('http') and '.m3u8' in url:
                 result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
@@ -1200,8 +1108,14 @@ class sources:
                 result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='30')
                 if result == None: raise Exception()
 
+            else:
+                raise Exception()
+
+            xbmc.log("url4:" + repr(url), xbmc.LOGNOTICE)
+
 
             self.url = url
+            xbmc.log("url2:" + repr(url), xbmc.LOGNOTICE)
             return url
         except:
             if info == True: self.errorForSources()
