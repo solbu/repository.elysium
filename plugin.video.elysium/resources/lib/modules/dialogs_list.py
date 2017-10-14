@@ -60,7 +60,7 @@ class ExtendedDialogHacks(object):
         #            Thread(target = lambda: self.numeric_keyboard.show()).start()
         #            wait_for_dialog('numericinput', interval=50)
 
-        # Show fanart background         
+        # Show fanart background
         self.fanart_window.show()
 
         # Run background task
@@ -126,13 +126,13 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
             self.getControl(3).setVisible(False)
         except:
             self.list = self.getControl(6)
-        
+
         # self.progress = self.getControl(2)
         # populate list
         self.thread = Thread(target=self._inside_root)
         self.thread.start()
         self.setFocus(self.list)
-		
+
     def onAction(self, action):
         if action.getId() in (9, 10, 92, 216, 247, 257, 275, 61467, 61448,):
             if self.insideIndex == -1:
@@ -142,7 +142,7 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
                 self._inside_root(select=self.insideIndex)
 
     def onClick(self, controlID):
-        
+
         if controlID == 6 or controlID == 3:
             num = self.list.getSelectedPosition()
             if num >= 0:
@@ -158,19 +158,17 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
 
     def _inside_root(self):
         with self.lock:
-           
-
             self.setFocus(self.list)
             for links in self.items:
-                self.providers_name = links['provider']
+                self.providers_name = links['scraper']
                 print ("ELYSIUM QUALITY", links['quality'])
                 quality = str(links['quality'])
-                
+
                 if "k" in quality.lower():  q_icon = "4k.png"
                 if "1080" in quality:  q_icon = "1080.png"
                 elif "HD" in quality: q_icon = "720.png"
                 else: q_icon = "sd.png"
-                
+
                 # if self.providers_name.lower() == 'kat': q_icon = "kat.jpg"
                 # if self.providers_name.lower() == 'thepiratebay': q_icon = "thepiratebay.png"
                 # if self.providers_name.lower() == 'yify': q_icon = "yify.jpg"
@@ -180,16 +178,16 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
                 # if self.providers_name.lower() == 'eztv': q_icon = "eztv.png"
 
                 if "torrent" in str(links['source']): q_icon = "torrent.png"
-                if quality == '4k' or quality == '4K': 	q_icon = "4k.png"					
+                if quality == '4k' or quality == '4K':  q_icon = "4k.png"
                 try: info = links['info']
-                except: info = ""	
+                except: info = ""
                 if not info == "": info = " | %s" % info
-                
-                if links['debridonly'] == True: label = '[I]DEB[/I] | %s | %s' % (quality, links['provider'])
-                else: label = '%s | %s' % (quality, links['provider'])
+
+                if links.get('debridonly', False) == True: label = '[I]DEB[/I] | %s | %s' % (quality, links['scraper'])
+                else: label = '%s | %s' % (quality, links['scraper'])
                 label2 = "[I]" + str(links['source']) + "[/I]"
                 label = label + info
-				
+
                 listitem = xbmcgui.ListItem(label=label.upper(), label2=label2.upper())
                 try:
                     pluginid = "plugin.video.elysium"
@@ -213,13 +211,13 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
         with self.lock:
             links = self.items[num]
             next = [y for x,y in enumerate(self.items) if x > num][:50]
-            
+
             if len(links) >= 1:
                 selected_link = links
                 self.selected.append(selected_link)
                 for next_scrape in next:
-					self.selected.append(next_scrape)
-                
+                                        self.selected.append(next_scrape)
+
                 self.timer_active = False
                 self.close()
                 return
@@ -234,12 +232,12 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
         self.progress.setPercent(progress)
         self.label.setLabel(u"{0} - {1:d}% ({2}/{3})".format("Select Quality ", progress,
                                                              self.completed_steps, self.steps))
-															 
-			# BACKGROUND TIMER												 
 
-			
-															 
-        
+                        # BACKGROUND TIMER
+
+
+
+
     def _populate(self):
         # Delay population to let ui settle
 
@@ -253,16 +251,16 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
                     selectedItem = self.items[selectedIndex]
 
                 # Add new item
-                # if len(self.items) >= 10: 
-					# self.sort_method()   
-					
+                # if len(self.items) >= 10:
+                                        # self.sort_method()
+
                 self.items.extend(result)
-                self.setFocus(self.list)             
+                self.setFocus(self.list)
 
 
                 if selectedItem is not None:
                     selectedIndex = self.items.index(selectedItem)
-                
+
 
                     if self.insideIndex != -1:
                         self.insideIndex = selectedIndex
@@ -271,4 +269,3 @@ class SelectorDialog(xbmcgui.WindowXMLDialog):
                 if self.insideIndex == -1:
                     self._inside_root(select=selectedIndex)
                     self.setFocus(self.list)
-
