@@ -83,7 +83,9 @@ elif action == 'clearProgress':
                                 dialog.ok('Clear Progress', 'There was an error Deleting the Database', '', '')
         else:
                 control.infoDialog(control.lang2(161).encode('utf-8'), heading='"Progress Database"', sound=False, icon=thumbnail)
-elif action == 'clearSources'          : sources().clearSources()
+elif action == 'clearSources'          :
+    import nanscrapers
+    nanscrapers.clear_cache()
 elif action == 'deleteFavourite'       : favourites.deleteFavourite(meta, content)
 elif action == 'deleteProgress'        : favourites.deleteProgress(meta, content)
 elif action == 'download':
@@ -152,7 +154,12 @@ elif action == 'soullessliteNavigator' : navigator.navigator().soulless(lite=Tru
 elif action == 'soullessNavigator'     : navigator.navigator().soulless()
 elif action == 'toolNavigator'         : navigator.navigator().tools()
 elif action == 'trailer'               : trailer.trailer().play(name, url)
-elif action == 'traktManager'          : trakt.manager(name, imdb, tvdb, content)
+elif action == 'traktManager':
+    from resources.lib.modules import trakt
+    trakt.manager(name, imdb, tvdb, content)
+elif action == 'authTrakt':
+    from resources.lib.modules import trakt
+    trakt.authTrakt()
 elif action == 'tvCertificates'        : tvshows.tvshows().certifications()
 elif action == 'tvFavourites'          : tvshows.tvshows().favourites()
 elif action == 'tvGenres'              : tvshows.tvshows().genres()
@@ -173,6 +180,6 @@ elif action == 'tvCollections'         : navigator.navigator().tvCollections()
 elif action == 'kidstvCollections'     : navigator.navigator().kidstvCollections()
 elif action == 'tvUserlists'           : tvshows.tvshows().userlists()
 elif action == 'tvWidget'              : episodes.episodes().widget()
-elif action == 'urlresolversettings'   : urlresolver.display_settings()
-elif action == 'nanscrapersettings'    : xbmcaddon.Addon('script.module.nanscrapers').openSettings()
+elif action == 'urlresolversettings'   : control.openSettings(query, id="script.module.urlresolver")
+elif action == 'nanscrapersettings'    : control.openSettings(query, id="script.module.nanscrapers")
 elif action == 'viewsNavigator'        : navigator.navigator().views()

@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import base64, datetime, json, os, re, sys, unicodedata, urllib, urlparse
+import base64, datetime, json, os, re, sys, unicodedata, urllib, urlparse, xbmc
 from resources.lib.modules import cache, client, control, favourites, metacache, playcount, trakt, utils, views, workers
 from schism_net import OPEN_URL
 try   : action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
@@ -55,6 +55,26 @@ class movies:
                 self.tmdbmovielist8_link  = control.setting('tmdb.movielist_id8')
                 self.tmdbmovielist9_link  = control.setting('tmdb.movielist_id9')
                 self.tmdbmovielist10_link = control.setting('tmdb.movielist_id10')
+                self.tmdbmovielist11_link = control.setting('tmdb.movielist_id11')
+                self.tmdbmovielist12_link = control.setting('tmdb.movielist_id12')
+                self.tmdbmovielist13_link = control.setting('tmdb.movielist_id13')
+                self.tmdbmovielist14_link = control.setting('tmdb.movielist_id14')
+                self.tmdbmovielist15_link = control.setting('tmdb.movielist_id15')
+                self.tmdbmovielist16_link = control.setting('tmdb.movielist_id16')
+                self.tmdbmovielist17_link = control.setting('tmdb.movielist_id17')
+                self.tmdbmovielist18_link = control.setting('tmdb.movielist_id18')
+                self.tmdbmovielist19_link = control.setting('tmdb.movielist_id19')
+                self.tmdbmovielist20_link = control.setting('tmdb.movielist_id20')
+                self.tmdbmovielist21_link = control.setting('tmdb.movielist_id21')
+                self.tmdbmovielist22_link = control.setting('tmdb.movielist_id22')
+                self.tmdbmovielist23_link = control.setting('tmdb.movielist_id23')
+                self.tmdbmovielist24_link = control.setting('tmdb.movielist_id24')
+                self.tmdbmovielist25_link = control.setting('tmdb.movielist_id25')
+                self.tmdbmovielist26_link = control.setting('tmdb.movielist_id26')
+                self.tmdbmovielist27_link = control.setting('tmdb.movielist_id27')
+                self.tmdbmovielist28_link = control.setting('tmdb.movielist_id28')
+                self.tmdbmovielist29_link = control.setting('tmdb.movielist_id29')
+                self.tmdbmovielist30_link = control.setting('tmdb.movielist_id30')
                 self.tmdb_image           = 'http://image.tmdb.org/t/p/original'
                 self.tmdb_poster          = 'http://image.tmdb.org/t/p/w500'
                 self.persons_link         = 'http://api.themoviedb.org/3/search/person?&api_key=%s&query=%s&include_adult=false&page=1' % (self.tmdb_key, '%s')
@@ -81,8 +101,10 @@ class movies:
                 self.tmdbdc_link          = 'http://api.themoviedb.org/3/list/12725?api_key=%s' % (self.tmdb_key)
                 self.tmdbimmortal_link    = 'http://api.themoviedb.org/3/list/13545?api_key=%s' % (self.tmdb_key)
                 self.tmdbdatenight_link   = 'http://api.themoviedb.org/3/list/13318?api_key=%s' % (self.tmdb_key)
-                self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/12710?api_key=%s' % (self.tmdb_key)
-                self.tmdb420_link         = 'http://api.themoviedb.org/3/list/13376?api_key=%s' % (self.tmdb_key)
+                #self.tmdb420_link         = 'http://api.themoviedb.org/3/list/13376?api_key=%s' % (self.tmdb_key)
+                #self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/12710?api_key=%s' % (self.tmdb_key)
+                self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/36407?api_key=%s' % (self.tmdb_key)
+                self.tmdb420_link         = 'http://api.themoviedb.org/3/list/36409?api_key=%s' % (self.tmdb_key)				
                 self.tmdbfight_link       = 'http://api.themoviedb.org/3/list/13040?api_key=%s' % (self.tmdb_key)
                 self.tmdbfast_link        = 'http://api.themoviedb.org/3/list/13037?api_key=%s' % (self.tmdb_key)
                 self.tmdburban_link       = 'http://api.themoviedb.org/3/list/13041?api_key=%s' % (self.tmdb_key)
@@ -93,8 +115,12 @@ class movies:
                 self.tmdbufo_link         = 'http://api.themoviedb.org/3/list/13377?api_key=%s' % (self.tmdb_key)
                 self.tmdbstandup_link     = 'http://api.themoviedb.org/3/list/13392?api_key=%s' % (self.tmdb_key)
                 self.tmdbgwg_link         = 'http://api.themoviedb.org/3/list/13396?api_key=%s' % (self.tmdb_key)
-                self.tmdbbible_link       = 'http://api.themoviedb.org/3/list/13476?api_key=%s' % (self.tmdb_key)
-                self.tmdbbased_link       = 'http://api.themoviedb.org/3/list/13479?api_key=%s' % (self.tmdb_key)
+                #self.tmdbbased_link       = 'http://api.themoviedb.org/3/list/13479?api_key=%s' % (self.tmdb_key)
+                self.tmdbbased_link       = 'http://api.themoviedb.org/3/list/36445?api_key=%s' % (self.tmdb_key)
+                self.tmdbconman_link      = 'http://api.themoviedb.org/3/list/36664?api_key=%s' % (self.tmdb_key)
+                self.tmdbcold_link        = 'http://api.themoviedb.org/3/list/36444?api_key=%s' % (self.tmdb_key)
+                self.tmdbspy_link         = 'http://api.themoviedb.org/3/list/36553?api_key=%s' % (self.tmdb_key)
+                self.tmdbconsp_link       = 'http://api.themoviedb.org/3/list/36692?api_key=%s' % (self.tmdb_key)
                 self.tmdbgamers_link      = 'http://api.themoviedb.org/3/list/13477?api_key=%s' % (self.tmdb_key)
                 self.tmdbvigilante_link   = 'http://api.themoviedb.org/3/list/13481?api_key=%s' % (self.tmdb_key)
                 self.tmdbsnatched_link    = 'http://api.themoviedb.org/3/list/13516?api_key=%s' % (self.tmdb_key)
@@ -125,6 +151,26 @@ class movies:
                 self.mycustomlist8_link   = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist8_link, self.tmdb_key)
                 self.mycustomlist9_link   = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist9_link, self.tmdb_key)
                 self.mycustomlist10_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist10_link, self.tmdb_key)
+                self.mycustomlist11_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist11_link, self.tmdb_key)
+                self.mycustomlist12_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist12_link, self.tmdb_key)
+                self.mycustomlist13_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist13_link, self.tmdb_key)
+                self.mycustomlist14_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist14_link, self.tmdb_key)
+                self.mycustomlist15_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist15_link, self.tmdb_key)
+                self.mycustomlist16_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist16_link, self.tmdb_key)
+                self.mycustomlist17_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist17_link, self.tmdb_key)
+                self.mycustomlist18_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist18_link, self.tmdb_key)
+                self.mycustomlist19_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist19_link, self.tmdb_key)
+                self.mycustomlist20_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist20_link, self.tmdb_key)
+                self.mycustomlist21_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist21_link, self.tmdb_key)
+                self.mycustomlist22_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist22_link, self.tmdb_key)
+                self.mycustomlist23_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist23_link, self.tmdb_key)
+                self.mycustomlist24_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist24_link, self.tmdb_key)
+                self.mycustomlist25_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist25_link, self.tmdb_key)
+                self.mycustomlist26_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist26_link, self.tmdb_key)
+                self.mycustomlist27_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist27_link, self.tmdb_key)
+                self.mycustomlist28_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist28_link, self.tmdb_key)
+                self.mycustomlist29_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist29_link, self.tmdb_key)
+                self.mycustomlist30_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist30_link, self.tmdb_key)				
                 self.tmdb_by_query_imdb   = 'http://api.themoviedb.org/3/find/%s?api_key=%s&external_source=imdb_id' % ("%s", self.tmdb_key)
                 self.traktlists_link      = 'http://api.trakt.tv/users/me/lists'
                 self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
@@ -135,41 +181,54 @@ class movies:
                 self.trakthistory_link    = 'http://api.trakt.tv/users/me/history/movies?limit=40&page=1'
 
         def get(self, url, idx=True):
+                #xbmc.log("QQQQQ url1 = {0}".format(url), xbmc.LOGNOTICE)
                 try:
                         try   : url = getattr(self, url + '_link')
                         except: pass
+                        #xbmc.log("QQQQQ url2 = {0}".format(url), xbmc.LOGNOTICE)
                         try   : u = urlparse.urlparse(url).netloc.lower()
                         except: pass
+                        #xbmc.log("QQQQQ u = {0}".format(u), xbmc.LOGNOTICE)
                         if u in self.tmdb_link and ('/user/' in url or '/list/' in url):
                                 self.list = self.tmdb_custom_list(url)
                                 self.worker()
+                                #xbmc.log("QQQQQ if self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.tmdb_link and not ('/user/' in url or '/list/' in url):
                                 self.list = cache.get(self.tmdb_list, 24, url)
                                 self.worker()
+                                #xbmc.log("QQQQQ elif1 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.trakt_link and '/users/' in url:
+                                #xbmc.log("QQQQQ self.trakt_list = {0}".format(self.trakt_list), xbmc.LOGNOTICE)
                                 try:
                                         if url == self.trakthistory_link: raise Exception()
                                         if not '/users/me/' in url: raise Exception()
-                                        if trakt.getActivity() > cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
+                                        if trakt.getActivity() < cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
                                         self.list = cache.get(self.trakt_list, 720, url, self.trakt_user)
+                                        #xbmc.log("QQQQQ trakt1 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                                 except:
                                         self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
                                 if '/users/me/' in url and '/collection/' in url:
                                         self.list = sorted(self.list, key=lambda k: utils.title_key(k['title']))
                                 if idx == True: self.worker()
+                                #xbmc.log("QQQQQ elif2 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.trakt_link and self.search_link in url:
                                 self.list = cache.get(self.trakt_list, 1, url, self.trakt_user)
                                 if idx == True: self.worker(level=0)
+                                #xbmc.log("QQQQQ elif3 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.trakt_link:
                                 self.list = cache.get(self.trakt_list, 24, url, self.trakt_user)
                                 if idx == True: self.worker()
+                                #xbmc.log("QQQQQ elif4 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.imdb_link and ('/user/' in url or '/list/' in url):
                                 self.list = cache.get(self.imdb_list, 0, url)
                                 if idx == True: self.worker()
+                                #xbmc.log("QQQQQ elif5 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.imdb_link:
                                 self.list = cache.get(self.imdb_list, 24, url)
                                 if idx == True: self.worker()
+                                #xbmc.log("QQQQQ elif6 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         if idx == True: self.movieDirectory(self.list)
+                        #xbmc.log("QQQQQ trakt movie list = {0}".format(self.list), xbmc.LOGNOTICE)
                         return self.list
                 except:
                         pass
@@ -650,15 +709,22 @@ class movies:
                 return self.list
 
         def trakt_list(self, url, user):
+                #xbmc.log("QQQQQ url = {0}\nuser = {1}".format(url, user), xbmc.LOGNOTICE)
                 try:
                         q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
+                        #xbmc.log("QQQQQ q1 = {0}".format(q), xbmc.LOGNOTICE)
                         q.update({'extended': 'full'})
+                        #xbmc.log("QQQQQ q2 = {0}".format(q), xbmc.LOGNOTICE)
                         q = (urllib.urlencode(q)).replace('%2C', ',')
+                        #xbmc.log("QQQQQ q3 = {0}".format(q), xbmc.LOGNOTICE)
                         u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
+                        #xbmc.log("QQQQQ u = {0}".format(u), xbmc.LOGNOTICE)
                         result = trakt.getTraktAsJson(u)
+                        #xbmc.log("QQQQQ result = {0}".format(result), xbmc.LOGNOTICE)
                         items = []
                         for i in result:
-                                try: items.append(i['movie'])
+                                try:
+                                    items.append(i['movie'])
                                 except: pass
                         if len(items) == 0:
                                 items = result
@@ -666,9 +732,12 @@ class movies:
                         return
                 try:
                         q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
+                        #xbmc.log("QQQQQ q1 = {0}".format(q), xbmc.LOGNOTICE)
                         if not int(q['limit']) == len(items): raise Exception()
                         q.update({'page': str(int(q['page']) + 1)})
+                        #xbmc.log("QQQQQ q2 = {0}".format(q), xbmc.LOGNOTICE)
                         q = (urllib.urlencode(q)).replace('%2C', ',')
+                        #xbmc.log("QQQQQ q3 = {0}".format(q), xbmc.LOGNOTICE)
                         next = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
                         next = next.encode('utf-8')
                 except:
@@ -676,53 +745,84 @@ class movies:
                 for item in items:
                         try:
                                 title = item['title']
+                                #xbmc.log("QQQQQ item_title1 = {0}".format(item['title']), xbmc.LOGNOTICE)
                                 title = client.replaceHTMLCodes(title)
+                                #xbmc.log("QQQQQ item_title2 = {0}".format(title), xbmc.LOGNOTICE)
                                 year = item['year']
+                                #xbmc.log("QQQQQ item_year1 = {0}".format(year), xbmc.LOGNOTICE)
                                 year = re.sub('[^0-9]', '', str(year))
+                                #xbmc.log("QQQQQ item_year2 = {0}".format(year), xbmc.LOGNOTICE)
                                 if int(year) > int((self.datetime).strftime('%Y')): raise Exception()
                                 imdb = item['ids']['imdb']
+                                #xbmc.log("QQQQQ item_imdb1 = {0}".format(imdb), xbmc.LOGNOTICE)
                                 if imdb == None or imdb == '': raise Exception()
                                 imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+                                #xbmc.log("QQQQQ item_imdb2 = {0}".format(imdb), xbmc.LOGNOTICE)
                                 tmdb = str(item.get('ids', {}).get('tmdb', 0))
+                                #xbmc.log("QQQQQ item_tmdb1 = {0}".format(tmdb), xbmc.LOGNOTICE)
                                 try: premiered = item['released']
                                 except: premiered = '0'
+                                #xbmc.log("QQQQQ premiered1 = {0}".format(premiered), xbmc.LOGNOTICE)
                                 try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
                                 except: premiered = '0'
+                                #xbmc.log("QQQQQ premiered2 = {0}".format(premiered), xbmc.LOGNOTICE)
                                 try: genre = item['genres']
                                 except: genre = '0'
+                                #xbmc.log("QQQQQ genre1 = {0}".format(genre), xbmc.LOGNOTICE)
                                 genre = [i.title() for i in genre]
+                                #xbmc.log("QQQQQ genre2 = {0}".format(genre), xbmc.LOGNOTICE)
                                 if genre == []: genre = '0'
+                                #xbmc.log("QQQQQ genre3 = {0}".format(genre), xbmc.LOGNOTICE)
                                 genre = ' / '.join(genre)
+                                #xbmc.log("QQQQQ genre4 = {0}".format(genre), xbmc.LOGNOTICE)
                                 try: duration = str(item['runtime'])
                                 except: duration = '0'
+                                #xbmc.log("QQQQQ duration1 = {0}".format(duration), xbmc.LOGNOTICE)
                                 if duration == None: duration = '0'
+                                #xbmc.log("QQQQQ duration2 = {0}".format(duration), xbmc.LOGNOTICE)
                                 try: rating = str(item['rating'])
                                 except: rating = '0'
+                                #xbmc.log("QQQQQ rating1 = {0}".format(rating), xbmc.LOGNOTICE)
                                 if rating == None or rating == '0.0': rating = '0'
+                                #xbmc.log("QQQQQ rating2 = {0}".format(rating), xbmc.LOGNOTICE)
                                 try: votes = str(item['votes'])
                                 except: votes = '0'
+                                #xbmc.log("QQQQQ rating3 = {0}".format(rating), xbmc.LOGNOTICE)
                                 try: votes = str(format(int(votes),',d'))
                                 except: pass
+                                #xbmc.log("QQQQQ votes1 = {0}".format(votes), xbmc.LOGNOTICE)
                                 if votes == None: votes = '0'
+                                #xbmc.log("QQQQQ votes2 = {0}".format(votes), xbmc.LOGNOTICE)
                                 try: mpaa = item['certification']
                                 except: mpaa = '0'
+                                #xbmc.log("QQQQQ mpaa1 = {0}".format(mpaa), xbmc.LOGNOTICE)
                                 if mpaa == None: mpaa = '0'
+                                #xbmc.log("QQQQQ mpaa2 = {0}".format(mpaa), xbmc.LOGNOTICE)
                                 try: plot = item['overview']
                                 except: plot = '0'
+                                #xbmc.log("QQQQQ plot1 = {0}".format(plot), xbmc.LOGNOTICE)
                                 if plot == None: plot = '0'
+                                #xbmc.log("QQQQQ plot2 = {0}".format(plot), xbmc.LOGNOTICE)
                                 plot = client.replaceHTMLCodes(plot)
+                                #xbmc.log("QQQQQ plot3 = {0}".format(plot), xbmc.LOGNOTICE)
                                 try: tagline = item['tagline']
                                 except: tagline = '0'
+                                #xbmc.log("QQQQQ tagline1 = {0}".format(tagline), xbmc.LOGNOTICE)
                                 if tagline == None: tagline = '0'
+                                #xbmc.log("QQQQQ tagline2 = {0}".format(tagline), xbmc.LOGNOTICE)
                                 tagline = client.replaceHTMLCodes(tagline)
+                                #xbmc.log("QQQQQ tagline3 = {0}".format(tagline), xbmc.LOGNOTICE)
                                 self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'tagline': tagline, 'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'poster': '0', 'next': next})
+                                #xbmc.log("QQQQQ self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         except:
                                 pass
                 return self.list
 
         def trakt_user_list(self, url, user):
+                #xbmc.log("QQQQQ url = {0}\nuser = {1}".format(url, user), xbmc.LOGNOTICE)
                 try:
                         items = trakt.getTraktAsJson(url)
+                        #xbmc.log("QQQQQ items1 = {0}".format(items), xbmc.LOGNOTICE)
                 except:
                         pass
                 for item in items:
@@ -1040,8 +1140,8 @@ class movies:
                 isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
                 indicators = playcount.getMovieIndicators()
                 playbackMenu = control.lang(32063).encode('utf-8') if control.setting('hosts.mode') == '2' else control.lang(32064).encode('utf-8')
-                # watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
-                # unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+                #watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+                #unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
                 watchedMenu = control.lang(32066).encode('utf-8')
                 unwatchedMenu = control.lang(32067).encode('utf-8')
                 queueMenu = control.lang(32065).encode('utf-8')

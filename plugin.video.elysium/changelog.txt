@@ -1,5 +1,7 @@
-[B]2017.10.14[/B]
+[B]2017.11.12[/B]
 - Added Hebrew language strings (thanks Dambledore)
+- Added a bunch of lists (thanks Soulless and Griffin)
+- Fixed tools opening up wrong settings section 
 - New api-key. Please get your own asap as it will become mandatory in next update
 - Switched to NanScrapers (thanks Midraal)
 
