@@ -1,3 +1,8 @@
+[B]2017.11.25[/B]
+- Added Trakt (thanks ARB, Midraal and Soulless)
+- Added Norwegian language strings (thanks solbu)
+- New api-key (will be the last one provided natively, from 2018 onwards users will need to provide their own api-key)
+
 [B]2017.11.12[/B]
 - Added Hebrew language strings (thanks Dambledore)
 - Added a bunch of lists (thanks Soulless and Griffin)

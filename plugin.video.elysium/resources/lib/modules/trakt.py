@@ -50,9 +50,7 @@ def __getTrakt(url, post=None):
 
         resp_code = result[1]
         resp_header = result[2]
-        #xbmc.log("QQQQQ resp_header = {0}".format(resp_header), xbmc.LOGNOTICE)
         result = result[0]
-        #xbmc.log("QQQQQ result = {0}".format(result), xbmc.LOGNOTICE)
 
         if resp_code in ['500', '502', '503', '504', '520', '521', '522', '524']:
             log_utils.log('Temporary Trakt Error: %s' % resp_code, log_utils.LOGWARNING)
@@ -65,7 +63,6 @@ def __getTrakt(url, post=None):
             return
 
         if resp_code not in ['401', '405']:
-            #xbmc.log("QQQQQ result = {0}\nresp_header = {1}".format(result, resp_header), xbmc.LOGNOTICE)
             return result, resp_header
 
         oauth = urlparse.urljoin(BASE_URL, '/oauth/token')
@@ -90,13 +87,9 @@ def __getTrakt(url, post=None):
 def getTraktAsJson(url, post=None):
     try:
         r, res_headers = __getTrakt(url, post)
-        #xbmc.log("QQQQQ r = {0}\nres_header = res_header".format(r), xbmc.LOGNOTICE)
         r = utils.json_loads_as_str(r)
-        #xbmc.log("QQQQQ r1 = {0}".format(r), xbmc.LOGNOTICE)
         if 'X-Sort-By' in res_headers and 'X-Sort-How' in res_headers:
             r = sort_list(res_headers['X-Sort-By'], res_headers['X-Sort-How'], r)
-            #xbmc.log("QQQQQ r2 = {0}".format(r), xbmc.LOGNOTICE)
-        #xbmc.log("QQQQQ r3 = {0}".format(r), xbmc.LOGNOTICE)
         return r
     except:
         pass

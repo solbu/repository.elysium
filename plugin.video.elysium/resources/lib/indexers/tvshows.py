@@ -38,7 +38,7 @@ class tvshows:
         self.imdb_user            = control.setting('imdb.user').replace('ur', '')
         self.lang                 = control.apiLanguage()['tvdb']
         self.tmdb_key             = control.setting('tmdb_apikey')
-        if self.tmdb_key == '' or self.tmdb_key == None: self.tmdb_key = base64.b64decode('MTJlOTMxZDI2NWQ3NThjMDkyMWVkZWNiMTFhZjM2NzM=')
+        if self.tmdb_key == '' or self.tmdb_key == None: self.tmdb_key = base64.b64decode('ODJjZmUzNTFmMDc5ZTdiZTVhNjhlNWUxNGMwMzQzZmQ=')
         self.tmdb_lang            = 'en'
         self.datetime             = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.today_date           = (self.datetime).strftime('%Y-%m-%d')
@@ -155,14 +155,11 @@ class tvshows:
         self.tmdbanimationtv_link = 'http://api.themoviedb.org/3/list/13573?api_key=%s' % (self.tmdb_key)
 
     def get(self, url, idx=True):
-        #xbmc.log("QQQQQ url1 = {0}".format(url), xbmc.LOGNOTICE)
         try:
             try: url = getattr(self, url + '_link')
             except: pass
-            #xbmc.log("QQQQQ url2 = {0}".format(url), xbmc.LOGNOTICE)
             try: u = urlparse.urlparse(url).netloc.lower()
             except: pass
-            #xbmc.log("QQQQQ u = {0}".format(u), xbmc.LOGNOTICE)
             if u in self.tmdb_link and ('/user/' in url or '/list/' in url):
                 self.list = self.tmdb_custom_list(url)
                 self.worker()
@@ -590,16 +587,11 @@ class tvshows:
             dupes = []
 
             q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-            #xbmc.log("QQQQQ q1 = {0}".format(q), xbmc.LOGNOTICE)
             q.update({'extended': 'full'})
-            #xbmc.log("QQQQQ q2 = {0}".format(q), xbmc.LOGNOTICE)
             q = (urllib.urlencode(q)).replace('%2C', ',')
-            #xbmc.log("QQQQQ q3 = {0}".format(q), xbmc.LOGNOTICE)
             u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
-            #xbmc.log("QQQQQ u = {0}".format(u), xbmc.LOGNOTICE)
 
             result = trakt.getTraktAsJson(str(u))
-            #xbmc.log("QQQQQ result = {0}".format(result), xbmc.LOGNOTICE)
             items = []
             for i in result:
                 try: items.append(i['show'])

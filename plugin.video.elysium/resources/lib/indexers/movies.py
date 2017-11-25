@@ -32,7 +32,7 @@ class movies:
                 self.imdb_link            = 'http://www.imdb.com'
                 self.tmdb_key             = control.setting('tmdb_apikey')
                 if self.tmdb_key == '' or self.tmdb_key == None:
-                        self.tmdb_key         = base64.b64decode('MTJlOTMxZDI2NWQ3NThjMDkyMWVkZWNiMTFhZjM2NzM=')
+                        self.tmdb_key         = base64.b64decode('ODJjZmUzNTFmMDc5ZTdiZTVhNjhlNWUxNGMwMzQzZmQ=')
                 self.datetime             = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
                 self.systime              = (self.datetime).strftime('%Y%m%d%H%M%S%f')
                 self.trakt_user           = control.setting('trakt.user').strip()
@@ -104,7 +104,7 @@ class movies:
                 #self.tmdb420_link         = 'http://api.themoviedb.org/3/list/13376?api_key=%s' % (self.tmdb_key)
                 #self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/12710?api_key=%s' % (self.tmdb_key)
                 self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/36407?api_key=%s' % (self.tmdb_key)
-                self.tmdb420_link         = 'http://api.themoviedb.org/3/list/36409?api_key=%s' % (self.tmdb_key)				
+                self.tmdb420_link         = 'http://api.themoviedb.org/3/list/36409?api_key=%s' % (self.tmdb_key)
                 self.tmdbfight_link       = 'http://api.themoviedb.org/3/list/13040?api_key=%s' % (self.tmdb_key)
                 self.tmdbfast_link        = 'http://api.themoviedb.org/3/list/13037?api_key=%s' % (self.tmdb_key)
                 self.tmdburban_link       = 'http://api.themoviedb.org/3/list/13041?api_key=%s' % (self.tmdb_key)
@@ -170,7 +170,7 @@ class movies:
                 self.mycustomlist27_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist27_link, self.tmdb_key)
                 self.mycustomlist28_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist28_link, self.tmdb_key)
                 self.mycustomlist29_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist29_link, self.tmdb_key)
-                self.mycustomlist30_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist30_link, self.tmdb_key)				
+                self.mycustomlist30_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist30_link, self.tmdb_key)
                 self.tmdb_by_query_imdb   = 'http://api.themoviedb.org/3/find/%s?api_key=%s&external_source=imdb_id' % ("%s", self.tmdb_key)
                 self.traktlists_link      = 'http://api.trakt.tv/users/me/lists'
                 self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
@@ -181,54 +181,41 @@ class movies:
                 self.trakthistory_link    = 'http://api.trakt.tv/users/me/history/movies?limit=40&page=1'
 
         def get(self, url, idx=True):
-                #xbmc.log("QQQQQ url1 = {0}".format(url), xbmc.LOGNOTICE)
                 try:
                         try   : url = getattr(self, url + '_link')
                         except: pass
-                        #xbmc.log("QQQQQ url2 = {0}".format(url), xbmc.LOGNOTICE)
                         try   : u = urlparse.urlparse(url).netloc.lower()
                         except: pass
-                        #xbmc.log("QQQQQ u = {0}".format(u), xbmc.LOGNOTICE)
                         if u in self.tmdb_link and ('/user/' in url or '/list/' in url):
                                 self.list = self.tmdb_custom_list(url)
                                 self.worker()
-                                #xbmc.log("QQQQQ if self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.tmdb_link and not ('/user/' in url or '/list/' in url):
                                 self.list = cache.get(self.tmdb_list, 24, url)
                                 self.worker()
-                                #xbmc.log("QQQQQ elif1 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.trakt_link and '/users/' in url:
-                                #xbmc.log("QQQQQ self.trakt_list = {0}".format(self.trakt_list), xbmc.LOGNOTICE)
                                 try:
                                         if url == self.trakthistory_link: raise Exception()
                                         if not '/users/me/' in url: raise Exception()
                                         if trakt.getActivity() < cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
                                         self.list = cache.get(self.trakt_list, 720, url, self.trakt_user)
-                                        #xbmc.log("QQQQQ trakt1 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                                 except:
                                         self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
                                 if '/users/me/' in url and '/collection/' in url:
                                         self.list = sorted(self.list, key=lambda k: utils.title_key(k['title']))
                                 if idx == True: self.worker()
-                                #xbmc.log("QQQQQ elif2 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.trakt_link and self.search_link in url:
                                 self.list = cache.get(self.trakt_list, 1, url, self.trakt_user)
                                 if idx == True: self.worker(level=0)
-                                #xbmc.log("QQQQQ elif3 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.trakt_link:
                                 self.list = cache.get(self.trakt_list, 24, url, self.trakt_user)
                                 if idx == True: self.worker()
-                                #xbmc.log("QQQQQ elif4 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.imdb_link and ('/user/' in url or '/list/' in url):
                                 self.list = cache.get(self.imdb_list, 0, url)
                                 if idx == True: self.worker()
-                                #xbmc.log("QQQQQ elif5 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         elif u in self.imdb_link:
                                 self.list = cache.get(self.imdb_list, 24, url)
                                 if idx == True: self.worker()
-                                #xbmc.log("QQQQQ elif6 self.list = {0}".format(self.list), xbmc.LOGNOTICE)
                         if idx == True: self.movieDirectory(self.list)
-                        #xbmc.log("QQQQQ trakt movie list = {0}".format(self.list), xbmc.LOGNOTICE)
                         return self.list
                 except:
                         pass
@@ -709,18 +696,12 @@ class movies:
                 return self.list
 
         def trakt_list(self, url, user):
-                #xbmc.log("QQQQQ url = {0}\nuser = {1}".format(url, user), xbmc.LOGNOTICE)
                 try:
                         q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-                        #xbmc.log("QQQQQ q1 = {0}".format(q), xbmc.LOGNOTICE)
                         q.update({'extended': 'full'})
-                        #xbmc.log("QQQQQ q2 = {0}".format(q), xbmc.LOGNOTICE)
                         q = (urllib.urlencode(q)).replace('%2C', ',')
-                        #xbmc.log("QQQQQ q3 = {0}".format(q), xbmc.LOGNOTICE)
                         u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
-                        #xbmc.log("QQQQQ u = {0}".format(u), xbmc.LOGNOTICE)
                         result = trakt.getTraktAsJson(u)
-                        #xbmc.log("QQQQQ result = {0}".format(result), xbmc.LOGNOTICE)
                         items = []
                         for i in result:
                                 try:
@@ -732,12 +713,9 @@ class movies:
                         return
                 try:
                         q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-                        #xbmc.log("QQQQQ q1 = {0}".format(q), xbmc.LOGNOTICE)
                         if not int(q['limit']) == len(items): raise Exception()
                         q.update({'page': str(int(q['page']) + 1)})
-                        #xbmc.log("QQQQQ q2 = {0}".format(q), xbmc.LOGNOTICE)
                         q = (urllib.urlencode(q)).replace('%2C', ',')
-                        #xbmc.log("QQQQQ q3 = {0}".format(q), xbmc.LOGNOTICE)
                         next = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
                         next = next.encode('utf-8')
                 except:
@@ -745,84 +723,53 @@ class movies:
                 for item in items:
                         try:
                                 title = item['title']
-                                #xbmc.log("QQQQQ item_title1 = {0}".format(item['title']), xbmc.LOGNOTICE)
                                 title = client.replaceHTMLCodes(title)
-                                #xbmc.log("QQQQQ item_title2 = {0}".format(title), xbmc.LOGNOTICE)
                                 year = item['year']
-                                #xbmc.log("QQQQQ item_year1 = {0}".format(year), xbmc.LOGNOTICE)
                                 year = re.sub('[^0-9]', '', str(year))
-                                #xbmc.log("QQQQQ item_year2 = {0}".format(year), xbmc.LOGNOTICE)
                                 if int(year) > int((self.datetime).strftime('%Y')): raise Exception()
                                 imdb = item['ids']['imdb']
-                                #xbmc.log("QQQQQ item_imdb1 = {0}".format(imdb), xbmc.LOGNOTICE)
                                 if imdb == None or imdb == '': raise Exception()
                                 imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
-                                #xbmc.log("QQQQQ item_imdb2 = {0}".format(imdb), xbmc.LOGNOTICE)
                                 tmdb = str(item.get('ids', {}).get('tmdb', 0))
-                                #xbmc.log("QQQQQ item_tmdb1 = {0}".format(tmdb), xbmc.LOGNOTICE)
                                 try: premiered = item['released']
                                 except: premiered = '0'
-                                #xbmc.log("QQQQQ premiered1 = {0}".format(premiered), xbmc.LOGNOTICE)
                                 try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
                                 except: premiered = '0'
-                                #xbmc.log("QQQQQ premiered2 = {0}".format(premiered), xbmc.LOGNOTICE)
                                 try: genre = item['genres']
                                 except: genre = '0'
-                                #xbmc.log("QQQQQ genre1 = {0}".format(genre), xbmc.LOGNOTICE)
                                 genre = [i.title() for i in genre]
-                                #xbmc.log("QQQQQ genre2 = {0}".format(genre), xbmc.LOGNOTICE)
                                 if genre == []: genre = '0'
-                                #xbmc.log("QQQQQ genre3 = {0}".format(genre), xbmc.LOGNOTICE)
                                 genre = ' / '.join(genre)
-                                #xbmc.log("QQQQQ genre4 = {0}".format(genre), xbmc.LOGNOTICE)
                                 try: duration = str(item['runtime'])
                                 except: duration = '0'
-                                #xbmc.log("QQQQQ duration1 = {0}".format(duration), xbmc.LOGNOTICE)
                                 if duration == None: duration = '0'
-                                #xbmc.log("QQQQQ duration2 = {0}".format(duration), xbmc.LOGNOTICE)
                                 try: rating = str(item['rating'])
                                 except: rating = '0'
-                                #xbmc.log("QQQQQ rating1 = {0}".format(rating), xbmc.LOGNOTICE)
                                 if rating == None or rating == '0.0': rating = '0'
-                                #xbmc.log("QQQQQ rating2 = {0}".format(rating), xbmc.LOGNOTICE)
                                 try: votes = str(item['votes'])
                                 except: votes = '0'
-                                #xbmc.log("QQQQQ rating3 = {0}".format(rating), xbmc.LOGNOTICE)
                                 try: votes = str(format(int(votes),',d'))
                                 except: pass
-                                #xbmc.log("QQQQQ votes1 = {0}".format(votes), xbmc.LOGNOTICE)
                                 if votes == None: votes = '0'
-                                #xbmc.log("QQQQQ votes2 = {0}".format(votes), xbmc.LOGNOTICE)
                                 try: mpaa = item['certification']
                                 except: mpaa = '0'
-                                #xbmc.log("QQQQQ mpaa1 = {0}".format(mpaa), xbmc.LOGNOTICE)
                                 if mpaa == None: mpaa = '0'
-                                #xbmc.log("QQQQQ mpaa2 = {0}".format(mpaa), xbmc.LOGNOTICE)
                                 try: plot = item['overview']
                                 except: plot = '0'
-                                #xbmc.log("QQQQQ plot1 = {0}".format(plot), xbmc.LOGNOTICE)
                                 if plot == None: plot = '0'
-                                #xbmc.log("QQQQQ plot2 = {0}".format(plot), xbmc.LOGNOTICE)
                                 plot = client.replaceHTMLCodes(plot)
-                                #xbmc.log("QQQQQ plot3 = {0}".format(plot), xbmc.LOGNOTICE)
                                 try: tagline = item['tagline']
                                 except: tagline = '0'
-                                #xbmc.log("QQQQQ tagline1 = {0}".format(tagline), xbmc.LOGNOTICE)
                                 if tagline == None: tagline = '0'
-                                #xbmc.log("QQQQQ tagline2 = {0}".format(tagline), xbmc.LOGNOTICE)
                                 tagline = client.replaceHTMLCodes(tagline)
-                                #xbmc.log("QQQQQ tagline3 = {0}".format(tagline), xbmc.LOGNOTICE)
                                 self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'tagline': tagline, 'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'poster': '0', 'next': next})
-                                #xbmc.log("QQQQQ self.list = {0}".format(self.list), xbmc.LOGNOTICE)
-                        except:
+                        except Exception:
                                 pass
                 return self.list
 
         def trakt_user_list(self, url, user):
-                #xbmc.log("QQQQQ url = {0}\nuser = {1}".format(url, user), xbmc.LOGNOTICE)
                 try:
                         items = trakt.getTraktAsJson(url)
-                        #xbmc.log("QQQQQ items1 = {0}".format(items), xbmc.LOGNOTICE)
                 except:
                         pass
                 for item in items:
@@ -1154,7 +1101,7 @@ class movies:
                                 tmdb, imdb, title, year = i['tmdb'], i['imdb'], i['originaltitle'], i['year']
                                 sysname = urllib.quote_plus('%s (%s)' % (title, year))
                                 systitle = urllib.quote_plus(title)
-                                poster, banner, fanart = i['poster'], i['banner'], i['fanart']
+                                poster, banner, fanart = i.get('poster',"0"), i.get('banner',"0"), i.get('fanart',"0")
                                 if banner == '0' and not fanart == '0': banner = fanart
                                 elif banner == '0' and not poster == '0': banner = poster
                                 if poster == '0': poster = addonPoster

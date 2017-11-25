@@ -107,9 +107,9 @@ class navigator:
                 downloads = True if control.setting('downloads') == 'true' and (len(control.listDir(control.setting('movie.download.path'))[0]) > 0) else False
                 if downloads == True:
                         self.addDirectoryItem(32009,          'downloadNavigator',    'downloads.png',     'DefaultFolder.png')
-                #if not control.setting('lists.widget') == '0':
-                        #self.addDirectoryItem('Trakt Movies', 'soullessNavigator',    'mymovies.png',      'DefaultVideoPlaylists.png')
-                        #self.addDirectoryItem('Trakt TV',     'tvshowstNavigator',    'mytvshows.png',     'DefaultVideoPlaylists.png')
+                if not control.setting('lists.widget') == '0':
+                        self.addDirectoryItem('Trakt Movies', 'soullessNavigator',    'mymovies.png',      'DefaultVideoPlaylists.png')
+                        self.addDirectoryItem('Trakt TV',     'tvshowstNavigator',    'mytvshows.png',     'DefaultVideoPlaylists.png')
                 self.addDirectoryItem(32010,              'searchNavigator',      'search.png',        'DefaultFolder.png')
                 self.addDirectoryItem('Changelog',        'ShowChangelog',        'icon.png',          'DefaultFolder.png')
                 self.endDirectory()
@@ -150,7 +150,7 @@ class navigator:
                         self.addDirectoryItem(32035, 'movies&url=traktfeatured',   'trakt.png',       'DefaultMovies.png', queue=True)
                 if traktIndicators == True:
                         self.addDirectoryItem(32036, 'movies&url=trakthistory',    'trakt.png',       'DefaultMovies.png', queue=True)
-                self.addDirectoryItem(32039,     'movieUserlists',             'mymovies.png',    'DefaultMovies.png')
+                self.addDirectoryItem("My Lists",     'movieUserlists',             'mymovies.png',    'DefaultMovies.png')
                 if lite == False:
                         self.addDirectoryItem(32031, 'movieliteNavigator',         'movies.png',      'DefaultMovies.png')
                         self.addDirectoryItem(asrch, 'moviePerson',                'actorsearch.png', 'DefaultMovies.png')
@@ -227,7 +227,7 @@ class navigator:
                 self.addDirectoryItem(tvlist27, 'tvshows&url=mycustomlist27',  'channels.png', 'DefaultTVShows.png')
                 self.addDirectoryItem(tvlist28, 'tvshows&url=mycustomlist28',  'channels.png', 'DefaultTVShows.png')
                 self.addDirectoryItem(tvlist29, 'tvshows&url=mycustomlist29',  'channels.png', 'DefaultTVShows.png')
-                self.addDirectoryItem(tvlist30, 'tvshows&url=mycustomlist30', 'channels.png', 'DefaultTVShows.png')				
+                self.addDirectoryItem(tvlist30, 'tvshows&url=mycustomlist30', 'channels.png', 'DefaultTVShows.png')
                 self.endDirectory()
 
         def tvshowst(self, lite=False):
