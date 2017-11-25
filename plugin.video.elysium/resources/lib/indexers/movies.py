@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import base64, datetime, json, os, re, sys, unicodedata, urllib, urlparse
+import base64, datetime, json, os, re, sys, unicodedata, urllib, urlparse, xbmc
 from resources.lib.modules import cache, client, control, favourites, metacache, playcount, trakt, utils, views, workers
 from schism_net import OPEN_URL
 try   : action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
@@ -32,7 +32,7 @@ class movies:
                 self.imdb_link            = 'http://www.imdb.com'
                 self.tmdb_key             = control.setting('tmdb_apikey')
                 if self.tmdb_key == '' or self.tmdb_key == None:
-                        self.tmdb_key         = base64.b64decode('MTJlOTMxZDI2NWQ3NThjMDkyMWVkZWNiMTFhZjM2NzM=')
+                        self.tmdb_key         = base64.b64decode('ODJjZmUzNTFmMDc5ZTdiZTVhNjhlNWUxNGMwMzQzZmQ=')
                 self.datetime             = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
                 self.systime              = (self.datetime).strftime('%Y%m%d%H%M%S%f')
                 self.trakt_user           = control.setting('trakt.user').strip()
@@ -55,6 +55,26 @@ class movies:
                 self.tmdbmovielist8_link  = control.setting('tmdb.movielist_id8')
                 self.tmdbmovielist9_link  = control.setting('tmdb.movielist_id9')
                 self.tmdbmovielist10_link = control.setting('tmdb.movielist_id10')
+                self.tmdbmovielist11_link = control.setting('tmdb.movielist_id11')
+                self.tmdbmovielist12_link = control.setting('tmdb.movielist_id12')
+                self.tmdbmovielist13_link = control.setting('tmdb.movielist_id13')
+                self.tmdbmovielist14_link = control.setting('tmdb.movielist_id14')
+                self.tmdbmovielist15_link = control.setting('tmdb.movielist_id15')
+                self.tmdbmovielist16_link = control.setting('tmdb.movielist_id16')
+                self.tmdbmovielist17_link = control.setting('tmdb.movielist_id17')
+                self.tmdbmovielist18_link = control.setting('tmdb.movielist_id18')
+                self.tmdbmovielist19_link = control.setting('tmdb.movielist_id19')
+                self.tmdbmovielist20_link = control.setting('tmdb.movielist_id20')
+                self.tmdbmovielist21_link = control.setting('tmdb.movielist_id21')
+                self.tmdbmovielist22_link = control.setting('tmdb.movielist_id22')
+                self.tmdbmovielist23_link = control.setting('tmdb.movielist_id23')
+                self.tmdbmovielist24_link = control.setting('tmdb.movielist_id24')
+                self.tmdbmovielist25_link = control.setting('tmdb.movielist_id25')
+                self.tmdbmovielist26_link = control.setting('tmdb.movielist_id26')
+                self.tmdbmovielist27_link = control.setting('tmdb.movielist_id27')
+                self.tmdbmovielist28_link = control.setting('tmdb.movielist_id28')
+                self.tmdbmovielist29_link = control.setting('tmdb.movielist_id29')
+                self.tmdbmovielist30_link = control.setting('tmdb.movielist_id30')
                 self.tmdb_image           = 'http://image.tmdb.org/t/p/original'
                 self.tmdb_poster          = 'http://image.tmdb.org/t/p/w500'
                 self.persons_link         = 'http://api.themoviedb.org/3/search/person?&api_key=%s&query=%s&include_adult=false&page=1' % (self.tmdb_key, '%s')
@@ -81,8 +101,10 @@ class movies:
                 self.tmdbdc_link          = 'http://api.themoviedb.org/3/list/12725?api_key=%s' % (self.tmdb_key)
                 self.tmdbimmortal_link    = 'http://api.themoviedb.org/3/list/13545?api_key=%s' % (self.tmdb_key)
                 self.tmdbdatenight_link   = 'http://api.themoviedb.org/3/list/13318?api_key=%s' % (self.tmdb_key)
-                self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/12710?api_key=%s' % (self.tmdb_key)
-                self.tmdb420_link         = 'http://api.themoviedb.org/3/list/13376?api_key=%s' % (self.tmdb_key)
+                #self.tmdb420_link         = 'http://api.themoviedb.org/3/list/13376?api_key=%s' % (self.tmdb_key)
+                #self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/12710?api_key=%s' % (self.tmdb_key)
+                self.tmdbmafia_link       = 'http://api.themoviedb.org/3/list/36407?api_key=%s' % (self.tmdb_key)
+                self.tmdb420_link         = 'http://api.themoviedb.org/3/list/36409?api_key=%s' % (self.tmdb_key)
                 self.tmdbfight_link       = 'http://api.themoviedb.org/3/list/13040?api_key=%s' % (self.tmdb_key)
                 self.tmdbfast_link        = 'http://api.themoviedb.org/3/list/13037?api_key=%s' % (self.tmdb_key)
                 self.tmdburban_link       = 'http://api.themoviedb.org/3/list/13041?api_key=%s' % (self.tmdb_key)
@@ -93,8 +115,12 @@ class movies:
                 self.tmdbufo_link         = 'http://api.themoviedb.org/3/list/13377?api_key=%s' % (self.tmdb_key)
                 self.tmdbstandup_link     = 'http://api.themoviedb.org/3/list/13392?api_key=%s' % (self.tmdb_key)
                 self.tmdbgwg_link         = 'http://api.themoviedb.org/3/list/13396?api_key=%s' % (self.tmdb_key)
-                self.tmdbbible_link       = 'http://api.themoviedb.org/3/list/13476?api_key=%s' % (self.tmdb_key)
-                self.tmdbbased_link       = 'http://api.themoviedb.org/3/list/13479?api_key=%s' % (self.tmdb_key)
+                #self.tmdbbased_link       = 'http://api.themoviedb.org/3/list/13479?api_key=%s' % (self.tmdb_key)
+                self.tmdbbased_link       = 'http://api.themoviedb.org/3/list/36445?api_key=%s' % (self.tmdb_key)
+                self.tmdbconman_link      = 'http://api.themoviedb.org/3/list/36664?api_key=%s' % (self.tmdb_key)
+                self.tmdbcold_link        = 'http://api.themoviedb.org/3/list/36444?api_key=%s' % (self.tmdb_key)
+                self.tmdbspy_link         = 'http://api.themoviedb.org/3/list/36553?api_key=%s' % (self.tmdb_key)
+                self.tmdbconsp_link       = 'http://api.themoviedb.org/3/list/36692?api_key=%s' % (self.tmdb_key)
                 self.tmdbgamers_link      = 'http://api.themoviedb.org/3/list/13477?api_key=%s' % (self.tmdb_key)
                 self.tmdbvigilante_link   = 'http://api.themoviedb.org/3/list/13481?api_key=%s' % (self.tmdb_key)
                 self.tmdbsnatched_link    = 'http://api.themoviedb.org/3/list/13516?api_key=%s' % (self.tmdb_key)
@@ -125,6 +151,26 @@ class movies:
                 self.mycustomlist8_link   = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist8_link, self.tmdb_key)
                 self.mycustomlist9_link   = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist9_link, self.tmdb_key)
                 self.mycustomlist10_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist10_link, self.tmdb_key)
+                self.mycustomlist11_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist11_link, self.tmdb_key)
+                self.mycustomlist12_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist12_link, self.tmdb_key)
+                self.mycustomlist13_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist13_link, self.tmdb_key)
+                self.mycustomlist14_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist14_link, self.tmdb_key)
+                self.mycustomlist15_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist15_link, self.tmdb_key)
+                self.mycustomlist16_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist16_link, self.tmdb_key)
+                self.mycustomlist17_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist17_link, self.tmdb_key)
+                self.mycustomlist18_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist18_link, self.tmdb_key)
+                self.mycustomlist19_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist19_link, self.tmdb_key)
+                self.mycustomlist20_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist20_link, self.tmdb_key)
+                self.mycustomlist21_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist21_link, self.tmdb_key)
+                self.mycustomlist22_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist22_link, self.tmdb_key)
+                self.mycustomlist23_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist23_link, self.tmdb_key)
+                self.mycustomlist24_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist24_link, self.tmdb_key)
+                self.mycustomlist25_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist25_link, self.tmdb_key)
+                self.mycustomlist26_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist26_link, self.tmdb_key)
+                self.mycustomlist27_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist27_link, self.tmdb_key)
+                self.mycustomlist28_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist28_link, self.tmdb_key)
+                self.mycustomlist29_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist29_link, self.tmdb_key)
+                self.mycustomlist30_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist30_link, self.tmdb_key)
                 self.tmdb_by_query_imdb   = 'http://api.themoviedb.org/3/find/%s?api_key=%s&external_source=imdb_id' % ("%s", self.tmdb_key)
                 self.traktlists_link      = 'http://api.trakt.tv/users/me/lists'
                 self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
@@ -150,7 +196,7 @@ class movies:
                                 try:
                                         if url == self.trakthistory_link: raise Exception()
                                         if not '/users/me/' in url: raise Exception()
-                                        if trakt.getActivity() > cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
+                                        if trakt.getActivity() < cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
                                         self.list = cache.get(self.trakt_list, 720, url, self.trakt_user)
                                 except:
                                         self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
@@ -658,7 +704,8 @@ class movies:
                         result = trakt.getTraktAsJson(u)
                         items = []
                         for i in result:
-                                try: items.append(i['movie'])
+                                try:
+                                    items.append(i['movie'])
                                 except: pass
                         if len(items) == 0:
                                 items = result
@@ -716,7 +763,7 @@ class movies:
                                 if tagline == None: tagline = '0'
                                 tagline = client.replaceHTMLCodes(tagline)
                                 self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'plot': plot, 'tagline': tagline, 'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'poster': '0', 'next': next})
-                        except:
+                        except Exception:
                                 pass
                 return self.list
 
@@ -1040,8 +1087,8 @@ class movies:
                 isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
                 indicators = playcount.getMovieIndicators()
                 playbackMenu = control.lang(32063).encode('utf-8') if control.setting('hosts.mode') == '2' else control.lang(32064).encode('utf-8')
-                # watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
-                # unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+                #watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+                #unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
                 watchedMenu = control.lang(32066).encode('utf-8')
                 unwatchedMenu = control.lang(32067).encode('utf-8')
                 queueMenu = control.lang(32065).encode('utf-8')
@@ -1054,7 +1101,7 @@ class movies:
                                 tmdb, imdb, title, year = i['tmdb'], i['imdb'], i['originaltitle'], i['year']
                                 sysname = urllib.quote_plus('%s (%s)' % (title, year))
                                 systitle = urllib.quote_plus(title)
-                                poster, banner, fanart = i['poster'], i['banner'], i['fanart']
+                                poster, banner, fanart = i.get('poster',"0"), i.get('banner',"0"), i.get('fanart',"0")
                                 if banner == '0' and not fanart == '0': banner = fanart
                                 elif banner == '0' and not poster == '0': banner = poster
                                 if poster == '0': poster = addonPoster
