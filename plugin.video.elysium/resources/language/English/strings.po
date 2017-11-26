@@ -1,28 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 # Addon Name: Elysium
 # Addon id: plugin.video.elysium
 # Addon Provider: Elysium
 msgid ""
 msgstr ""
+"Project-Id-Version: plugin.video.elysium 2017.11.25\n"
+"POT-Creation-Date: 2017-11-26 16:56+0100\n"
+"PO-Revision-Date: 2017-11-26 16:56+0100\n"
 
 msgctxt "#33001"
-msgid "[B]Url Resolver[/B] : Settings"
+msgid "[B]Url Resolver[/B]: Settings"
 msgstr ""
 
 msgctxt "#330011"
-msgid "[B]Real Debrid[/B] : Settings"
+msgid "[B]Real Debrid[/B]: Settings"
 msgstr ""
 
 msgctxt "#30421"
 msgid "Adding to library..."
-msgstr "Adding to library..."
+msgstr ""
 
 msgctxt "#30423"
 msgid "Process Complete"
-msgstr "Process Complete"
+msgstr ""
 
 msgctxt "#30425"
 msgid "Are you sure?"
-msgstr "Are you sure?"
+msgstr ""
 
 
 msgctxt "#32001"
@@ -194,23 +202,23 @@ msgid "No Trakt or IMDb account found."
 msgstr ""
 
 msgctxt "#32043"
-msgid "[B]SETTINGS[/B] : General"
+msgid "[B]SETTINGS[/B]: General"
 msgstr ""
 
 msgctxt "#32044"
-msgid "[B]SETTINGS[/B] : Accounts"
+msgid "[B]SETTINGS[/B]: Accounts"
 msgstr ""
 
 msgctxt "#32045"
-msgid "[B]SETTINGS[/B] : Playback"
+msgid "[B]SETTINGS[/B]: Playback"
 msgstr ""
 
 msgctxt "#32046"
-msgid "[B]SETTINGS[/B] : Subtitles"
+msgid "[B]SETTINGS[/B]: Subtitles"
 msgstr ""
 
 msgctxt "#32047"
-msgid "[B]SETTINGS[/B] : Providers"
+msgid "[B]SETTINGS[/B]: Providers"
 msgstr ""
 
 msgctxt "#32048"
@@ -341,7 +349,115 @@ msgctxt "#32079"
 msgid "[TMDB LIST] TV Shows"
 msgstr ""
 
-#msgctxt "#32080"
+msgctxt "#32080"
+msgid "[B]SETTINGS[/B]: Debrid"
+msgstr ""
+
+msgctxt "#32081"
+msgid "[B]SETTINGS[/B]: Watchlist"
+msgstr ""
+
+msgctxt "#32082"
+msgid "[B]SETTINGS[/B]: Movie Lists"
+msgstr ""
+
+msgctxt "#32083"
+msgid "[B]SETTINGS[/B]: TVShow Lists"
+msgstr ""
+
+msgctxt "#32084"
+msgid "[B]Elysium[/B]: Views"
+msgstr ""
+
+msgctxt "#32085"
+msgid "[B]BACKUP[/B]: Watchlist"
+msgstr ""
+
+msgctxt "#32086"
+msgid "[B]RESTORE[/B]: Watchlist"
+msgstr ""
+
+msgctxt "#32087"
+msgid "[B]Elysium[/B]: Clear Progress Database"
+msgstr ""
+
+msgctxt "#32088"
+msgid "Populars"
+msgstr ""
+
+msgctxt "#32089"
+msgid "Top Rated"
+msgstr ""
+
+msgctxt "#32090"
+msgid "Marvel Universe"
+msgstr ""
+
+msgctxt "#32091"
+msgid "Oscar Winners"
+msgstr ""
+
+msgctxt "#32092"
+msgid "Disney Collection"
+msgstr ""
+
+msgctxt "#32093"
+msgid "Collections"
+msgstr ""
+
+msgctxt "#32094"
+msgid "Kids Collections"
+msgstr ""
+
+msgctxt "#32095"
+msgid "Holiday"
+msgstr ""
+
+msgctxt "#32096"
+msgid "Persons"
+msgstr ""
+
+msgctxt "#32097"
+msgid "Calendar"
+msgstr ""
+
+msgctxt "#32098"
+msgid "Actor Search"
+msgstr ""
+
+msgctxt "#32099"
+msgid "My Episodes"
+msgstr ""
+
+msgctxt "#32100"
+msgid "Kids TV"
+msgstr ""
+
+msgctxt "#32101"
+msgid "TV Collections"
+msgstr ""
+
+msgctxt "#32102"
+msgid "Genres"
+msgstr ""
+
+msgctxt "#32103"
+msgid "Years"
+msgstr ""
+
+msgctxt "#32104"
+msgid "In progress"
+msgstr ""
+
+#msgctxt "#32105"
+#msgid ""
+#msgstr ""
+
+#msgctxt "#32106"
+#msgid ""
+#msgstr ""
+
+#msgctxt "#32107"
 #msgid ""
 #msgstr ""
 

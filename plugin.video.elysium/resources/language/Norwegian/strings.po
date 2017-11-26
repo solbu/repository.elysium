@@ -1,4 +1,4 @@
-# Norwegian translation of plugin.video.elysium.
+# Norwegian Bokmal translations for plugin.video.elysium package.
 # Copyright (C) 2017 Elysium
 # This file is distributed under the same license as the plugin.video.elysium package.
 #
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plugin.video.elysium 2017.11.25\n"
 "POT-Creation-Date: 2017-11-26 16:56+0100\n"
-"PO-Revision-Date: 2017-11-26 18:05+0100\n"
+"PO-Revision-Date: 2017-11-26 20:32+0100\n"
 "Last-Translator: Johnny A. Solbu <johnny@solbu.net>\n"
 "Language-Team: Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb_NO\n"
@@ -22,11 +22,11 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 msgctxt "#33001"
-msgid "[B]Url Resolver[/B] : Settings"
+msgid "[B]Url Resolver[/B]: Settings"
 msgstr "[B]Url Resolver[/B]: Innstillinger"
 
 msgctxt "#330011"
-msgid "[B]Real Debrid[/B] : Settings"
+msgid "[B]Real Debrid[/B]: Settings"
 msgstr "[B]Real Debrid[/B]: Innstillinger"
 
 msgctxt "#30421"
@@ -210,23 +210,23 @@ msgid "No Trakt or IMDb account found."
 msgstr "Ingen Trakt- eller IMDb-konto funnet."
 
 msgctxt "#32043"
-msgid "[B]SETTINGS[/B] : General"
+msgid "[B]SETTINGS[/B]: General"
 msgstr "[B]INSTILLINGER[/B]: Generelt"
 
 msgctxt "#32044"
-msgid "[B]SETTINGS[/B] : Accounts"
+msgid "[B]SETTINGS[/B]: Accounts"
 msgstr "[B]INSTILLINGER[/B]: Kontoer"
 
 msgctxt "#32045"
-msgid "[B]SETTINGS[/B] : Playback"
+msgid "[B]SETTINGS[/B]: Playback"
 msgstr "[B]INSTILLINGER[/B]: Avspilling"
 
 msgctxt "#32046"
-msgid "[B]SETTINGS[/B] : Subtitles"
+msgid "[B]SETTINGS[/B]: Subtitles"
 msgstr "[B]INSTILLINGER[/B]: Undertekster"
 
 msgctxt "#32047"
-msgid "[B]SETTINGS[/B] : Providers"
+msgid "[B]SETTINGS[/B]: Providers"
 msgstr "[B]INSTILLINGER[/B]: Tilbydere"
 
 msgctxt "#32048"
@@ -390,8 +390,76 @@ msgid "[B]RESTORE[/B]: Watchlist"
 msgstr "[B]Gjenopprett[/B]: Overvåkningsliste "
 
 msgctxt "#32087"
-msgid "[B]Elysium[/B]: Clear Progress"
-msgstr "[B]Elysium[/B]: Tøm fremgang"
+msgid "[B]Elysium[/B]: Clear Progress Database"
+msgstr "[B]Elysium[/B]: Tøm fremgangsdatabase"
+
+msgctxt "#32088"
+msgid "Populars"
+msgstr "Mest Populær"
+
+msgctxt "#32089"
+msgid "Top Rated"
+msgstr "Topp-rangert"
+
+msgctxt "#32090"
+msgid "Marvel Universe"
+msgstr "Marvel-universet"
+
+msgctxt "#32091"
+msgid "Oscar Winners"
+msgstr "Oscar-vinnere"
+
+msgctxt "#32092"
+msgid "Disney Collection"
+msgstr "Disney-samling"
+
+msgctxt "#32093"
+msgid "Collections"
+msgstr "Samlinger"
+
+msgctxt "#32094"
+msgid "Kids Collections"
+msgstr "Barne-samlinger"
+
+msgctxt "#32095"
+msgid "Holiday"
+msgstr "Helligdag"
+
+msgctxt "#32096"
+msgid "Persons"
+msgstr "Personer"
+
+msgctxt "#32097"
+msgid "Calendar"
+msgstr "Kalender"
+
+msgctxt "#32098"
+msgid "Actor Search"
+msgstr "Skuespiller-søk"
+
+msgctxt "#32099"
+msgid "My Episodes"
+msgstr "Mine episoder"
+
+msgctxt "#32100"
+msgid "Kids TV"
+msgstr "Barne-TV"
+
+msgctxt "#32101"
+msgid "TV Collections"
+msgstr "TV-Samling"
+
+msgctxt "#32102"
+msgid "Genres"
+msgstr "Sjangere"
+
+msgctxt "#32103"
+msgid "Years"
+msgstr "År"
+
+msgctxt "#32104"
+msgid "In progress"
+msgstr "Pågår"
 
 msgctxt "#32301"
 msgid "Enabled"

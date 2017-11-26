@@ -4,14 +4,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Elysium Kodi Addon\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2017-11-26 16:56+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English2Hebrew\n"
+"Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: he_IL\n"
 "X-Generator: Poedit 2.0.3\n"
 
 msgctxt "#33001"
@@ -271,8 +271,11 @@ msgid "CLICK HERE TO SAVE VIEW"
 msgstr "לחץ כאן כדי לשמור תצוגה"
 
 msgctxt "#32060"
-msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "ינואר|פברואר|מרץ|אפריל|מאי|יוני|יולי|אוגוסט|ספטמבר|אוקטובר|נובמבר|דצמבר"
+msgid ""
+"January|February|March|April|May|June|July|August|September|October|November|"
+"December"
+msgstr ""
+"ינואר|פברואר|מרץ|אפריל|מאי|יוני|יולי|אוגוסט|ספטמבר|אוקטובר|נובמבר|דצמבר"
 
 msgctxt "#32061"
 msgid "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday"
@@ -321,6 +324,156 @@ msgstr "עיין בסדרה"
 msgctxt "#32072"
 msgid "Refresh"
 msgstr "רענן"
+
+msgctxt "#32073"
+msgid "My Elysium"
+msgstr ""
+
+#, fuzzy
+msgctxt "#32074"
+msgid "Trakt Movies"
+msgstr "תהליך טראקט"
+
+#, fuzzy
+msgctxt "#32075"
+msgid "Trakt TV"
+msgstr "טראקט"
+
+msgctxt "#32076"
+msgid "[WATCHLIST] Movies"
+msgstr ""
+
+msgctxt "#32077"
+msgid "[WATCHLIST] TV Shows"
+msgstr ""
+
+msgctxt "#32078"
+msgid "[TMDB LIST] Movies"
+msgstr ""
+
+#, fuzzy
+msgctxt "#32079"
+msgid "[TMDB LIST] TV Shows"
+msgstr "הסדרות שלי"
+
+#, fuzzy
+msgctxt "#32080"
+msgid "[B]SETTINGS[/B]: Debrid"
+msgstr "[B]הגדרות[/B] : ספקים"
+
+#, fuzzy
+msgctxt "#32081"
+msgid "[B]SETTINGS[/B]: Watchlist"
+msgstr "[B]הגדרות[/B] : כתוביות"
+
+#, fuzzy
+msgctxt "#32082"
+msgid "[B]SETTINGS[/B]: Movie Lists"
+msgstr "[B]הגדרות[/B] : ספקים"
+
+#, fuzzy
+msgctxt "#32083"
+msgid "[B]SETTINGS[/B]: TVShow Lists"
+msgstr "[B]הגדרות[/B] : כתוביות"
+
+#, fuzzy
+msgctxt "#32084"
+msgid "[B]Elysium[/B]: Views"
+msgstr "[B]אליסיום[/B] : סוגים"
+
+msgctxt "#32085"
+msgid "[B]BACKUP[/B]: Watchlist"
+msgstr ""
+
+msgctxt "#32086"
+msgid "[B]RESTORE[/B]: Watchlist"
+msgstr ""
+
+#, fuzzy
+msgctxt "#32087"
+msgid "[B]Elysium[/B]: Clear Progress Database"
+msgstr "[B]אליסיום[/B] : ניקוי מטא-דאטה..."
+
+#, fuzzy
+msgctxt "#32088"
+msgid "Populars"
+msgstr "הכי פופולארי"
+
+msgctxt "#32089"
+msgid "Top Rated"
+msgstr ""
+
+msgctxt "#32090"
+msgid "Marvel Universe"
+msgstr ""
+
+#, fuzzy
+msgctxt "#32091"
+msgid "Oscar Winners"
+msgstr "הזוכים באוסקר"
+
+#, fuzzy
+msgctxt "#32092"
+msgid "Disney Collection"
+msgstr "אוספים"
+
+#, fuzzy
+msgctxt "#32093"
+msgid "Collections"
+msgstr "אוספים"
+
+#, fuzzy
+msgctxt "#32094"
+msgid "Kids Collections"
+msgstr "אוספים"
+
+msgctxt "#32095"
+msgid "Holiday"
+msgstr ""
+
+#, fuzzy
+msgctxt "#32096"
+msgid "Persons"
+msgstr "עונות"
+
+#, fuzzy
+msgctxt "#32097"
+msgid "Calendar"
+msgstr "לוח שידורי טלוויזיה"
+
+#, fuzzy
+msgctxt "#32098"
+msgid "Actor Search"
+msgstr "חיפוש"
+
+#, fuzzy
+msgctxt "#32099"
+msgid "My Episodes"
+msgstr "פרקים"
+
+msgctxt "#32100"
+msgid "Kids TV"
+msgstr ""
+
+#, fuzzy
+msgctxt "#32101"
+msgid "TV Collections"
+msgstr "אוספים"
+
+#, fuzzy
+msgctxt "#32102"
+msgid "Genres"
+msgstr "ז'אנרים"
+
+#, fuzzy
+msgctxt "#32103"
+msgid "Years"
+msgstr "שנה"
+
+#, fuzzy
+msgctxt "#32104"
+msgid "In progress"
+msgstr "בתהליך"
 
 msgctxt "#32301"
 msgid "Enabled"
