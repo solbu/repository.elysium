@@ -313,6 +313,38 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr ""
 
+msgctxt "#32073"
+msgid "My Elysium"
+msgstr ""
+
+msgctxt "#32074"
+msgid "Trakt Movies"
+msgstr ""
+
+msgctxt "#32075"
+msgid "Trakt TV"
+msgstr ""
+
+msgctxt "#32076"
+msgid "[WATCHLIST] Movies"
+msgstr ""
+
+msgctxt "#32077"
+msgid "[WATCHLIST] TV Shows"
+msgstr ""
+
+msgctxt "#32078"
+msgid "[TMDB LIST] Movies"
+msgstr ""
+
+msgctxt "#32079"
+msgid "[TMDB LIST] TV Shows"
+msgstr ""
+
+#msgctxt "#32080"
+#msgid ""
+#msgstr ""
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr ""

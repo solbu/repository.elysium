@@ -98,9 +98,9 @@ class navigator:
                 self.addDirectoryItem(32002,              'tvNavigator',          'channels.png',      'DefaultTVShows.png')
                 if not control.setting('movie.widget') == '0':
                         self.addDirectoryItem('Spotlight',    'movieWidget',          'latest-movies.png', 'DefaultRecentlyAddedMovies.png')
-                self.addDirectoryItem('New Movies',       'movies&url=premiere',  'trending.png',      'DefaultRecentlyAddedMovies.png')
+                self.addDirectoryItem(32005,              'movies&url=premiere',  'trending.png',      'DefaultRecentlyAddedMovies.png')
                 self.addDirectoryItem(32026,              'tvshows&url=premiere', 'years.png',         'DefaultTVShows.png')
-                self.addDirectoryItem('My Elysium',       'lists_navigator',      'mymovies.png',      'DefaultRecentlyAddedMovies.png')
+                self.addDirectoryItem(32073,              'lists_navigator',      'mymovies.png',      'DefaultRecentlyAddedMovies.png')
                 self.addDirectoryItem(32027,              'calendars',            'networks.png',      'DefaultRecentlyAddedEpisodes.png')
                 self.addDirectoryItem(32007,              'channels',             'channels.png',      'DefaultMovies.png')
                 self.addDirectoryItem(32008,              'toolNavigator',        'tools.png',         'DefaultAddonProgram.png')
@@ -108,8 +108,8 @@ class navigator:
                 if downloads == True:
                         self.addDirectoryItem(32009,          'downloadNavigator',    'downloads.png',     'DefaultFolder.png')
                 if not control.setting('lists.widget') == '0':
-                        self.addDirectoryItem('Trakt Movies', 'soullessNavigator',    'mymovies.png',      'DefaultVideoPlaylists.png')
-                        self.addDirectoryItem('Trakt TV',     'tvshowstNavigator',    'mytvshows.png',     'DefaultVideoPlaylists.png')
+                        self.addDirectoryItem(32074, 'soullessNavigator',    'mymovies.png',      'DefaultVideoPlaylists.png')
+                        self.addDirectoryItem(32075,     'tvshowstNavigator',    'mytvshows.png',     'DefaultVideoPlaylists.png')
                 self.addDirectoryItem(32010,              'searchNavigator',      'search.png',        'DefaultFolder.png')
                 self.addDirectoryItem('Changelog',        'ShowChangelog',        'icon.png',          'DefaultFolder.png')
                 self.endDirectory()
@@ -158,10 +158,10 @@ class navigator:
                 self.endDirectory()
 
         def lists_navigator(self):
-                self.addDirectoryItem('[WATCHLIST] Movies',   'movieFavourites', 'mymovies.png', 'DefaultMovies.png')
-                self.addDirectoryItem('[WATCHLIST] TV Shows', 'tvFavourites',    'mymovies.png', 'DefaultMovies.png')
-                self.addDirectoryItem('[TMDB LIST] Movies',   'movielist',       'movies.png',   'DefaultMovies.png')
-                self.addDirectoryItem('[TMDB LIST] Tv Shows', 'tvlist',          'channels.png', 'DefaultTVShows.png')
+                self.addDirectoryItem(32076,   'movieFavourites', 'mymovies.png', 'DefaultMovies.png')
+                self.addDirectoryItem(32077,   'tvFavourites',    'mymovies.png', 'DefaultMovies.png')
+                self.addDirectoryItem(32078,   'movielist',       'movies.png',   'DefaultMovies.png')
+                self.addDirectoryItem(32079,   'tvlist',          'channels.png', 'DefaultTVShows.png')
                 self.endDirectory()
 
         def mymovies(self):
