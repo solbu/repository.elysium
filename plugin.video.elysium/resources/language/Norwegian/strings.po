@@ -9,8 +9,9 @@
 # Addon Provider: Elysium
 msgid ""
 msgstr ""
-"Project-Id-Version: plugin.video.elysium 2017.10.14\n"
-"PO-Revision-Date: 2017-10-25 10:56+0200\n"
+"Project-Id-Version: plugin.video.elysium 2017.11.25\n"
+"POT-Creation-Date: 2017-11-26 16:56+0100\n"
+"PO-Revision-Date: 2017-11-26 18:05+0100\n"
 "Last-Translator: Johnny A. Solbu <johnny@solbu.net>\n"
 "Language-Team: Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb_NO\n"
@@ -18,15 +19,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"POT-Creation-Date: \n"
 "X-Generator: Poedit 1.8.7.1\n"
 
 msgctxt "#33001"
-msgid "[B]Url Resolver[/B]: Settings"
+msgid "[B]Url Resolver[/B] : Settings"
 msgstr "[B]Url Resolver[/B]: Innstillinger"
 
 msgctxt "#330011"
-msgid "[B]Real Debrid[/B]: Settings"
+msgid "[B]Real Debrid[/B] : Settings"
 msgstr "[B]Real Debrid[/B]: Innstillinger"
 
 msgctxt "#30421"
@@ -210,33 +210,32 @@ msgid "No Trakt or IMDb account found."
 msgstr "Ingen Trakt- eller IMDb-konto funnet."
 
 msgctxt "#32043"
-msgid "[B]SETTINGS[/B]: General"
+msgid "[B]SETTINGS[/B] : General"
 msgstr "[B]INSTILLINGER[/B]: Generelt"
 
 msgctxt "#32044"
-msgid "[B]SETTINGS[/B]: Accounts"
+msgid "[B]SETTINGS[/B] : Accounts"
 msgstr "[B]INSTILLINGER[/B]: Kontoer"
 
 msgctxt "#32045"
-msgid "[B]SETTINGS[/B]: Playback"
+msgid "[B]SETTINGS[/B] : Playback"
 msgstr "[B]INSTILLINGER[/B]: Avspilling"
 
 msgctxt "#32046"
-msgid "[B]SETTINGS[/B]: Subtitles"
+msgid "[B]SETTINGS[/B] : Subtitles"
 msgstr "[B]INSTILLINGER[/B]: Undertekster"
 
 msgctxt "#32047"
-msgid "[B]SETTINGS[/B]: Providers"
+msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]INSTILLINGER[/B]: Tilbydere"
 
 msgctxt "#32048"
 msgid "[B]Elysium[/B]: Downloads"
 msgstr "[B]Elysium[/B]: Nedlastinger"
 
-
 msgctxt "#32049"
 msgid "[B]Elysium[/B]: Viewtypes"
-msgstr "Visningstyper"
+msgstr "[B]Elysium[/B]: Visningstyper"
 
 msgctxt "#32050"
 msgid "[B]Elysium[/B]: Clear providers..."
@@ -280,11 +279,11 @@ msgstr "KLIKK HER for å lagre visning"
 
 msgctxt "#32060"
 msgid ""
-"January|February|March|April|May|June|July|August|September|"
-"October|November|December"
+"January|February|March|April|May|June|July|August|September|October|"
+"November|December"
 msgstr ""
-"Januar|Februar|Mars|April|Mai|Juni|Juli|August|September|"
-"Oktober|November|Desember"
+"Januar|Februar|Mars|April|Mai|Juni|Juli|August|September|Oktober|"
+"November|Desember"
 
 msgctxt "#32061"
 msgid "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday"
@@ -333,6 +332,66 @@ msgstr "Bla gjennom serier"
 msgctxt "#32072"
 msgid "Refresh"
 msgstr "Oppdater"
+
+msgctxt "#32073"
+msgid "My Elysium"
+msgstr "Mitt Elysium"
+
+msgctxt "#32074"
+msgid "Trakt Movies"
+msgstr "Trakt Filmer"
+
+msgctxt "#32075"
+msgid "Trakt TV"
+msgstr "Trakt TV-serier"
+
+msgctxt "#32076"
+msgid "[WATCHLIST] Movies"
+msgstr "[OVERVÅKNINGSLISTE] Filmer"
+
+msgctxt "#32077"
+msgid "[WATCHLIST] TV Shows"
+msgstr "[OVERVÅKNINGSLISTE] TV-Serier"
+
+msgctxt "#32078"
+msgid "[TMDB LIST] Movies"
+msgstr "[TMDB-LISTE] Filmer"
+
+msgctxt "#32079"
+msgid "[TMDB LIST] TV Shows"
+msgstr "[TMDB-LISTE] TV-serier"
+
+msgctxt "#32080"
+msgid "[B]SETTINGS[/B]: Debrid"
+msgstr "[B]INSTILLINGER[/B]: Debrid"
+
+msgctxt "#32081"
+msgid "[B]SETTINGS[/B]: Watchlist"
+msgstr "[B]INSTILLINGER[/B]: Overvåkningsliste "
+
+msgctxt "#32082"
+msgid "[B]SETTINGS[/B]: Movie Lists"
+msgstr "[B]INSTILLINGER[/B]: Filmlister"
+
+msgctxt "#32083"
+msgid "[B]SETTINGS[/B]: TVShow Lists"
+msgstr "[B]INSTILLINGER[/B]: TV-serielister"
+
+msgctxt "#32084"
+msgid "[B]Elysium[/B]: Views"
+msgstr "[B]Elysium[/B]: Visninger"
+
+msgctxt "#32085"
+msgid "[B]BACKUP[/B]: Watchlist"
+msgstr "[B]Backup[/B]: Overvåkningsliste "
+
+msgctxt "#32086"
+msgid "[B]RESTORE[/B]: Watchlist"
+msgstr "[B]Gjenopprett[/B]: Overvåkningsliste "
+
+msgctxt "#32087"
+msgid "[B]Elysium[/B]: Clear Progress"
+msgstr "[B]Elysium[/B]: Tøm fremgang"
 
 msgctxt "#32301"
 msgid "Enabled"
@@ -564,8 +623,7 @@ msgstr "Sekundær-språk"
 
 msgctxt "#32358"
 msgid "Subtitles could be unavailable or out of sync."
-msgstr ""
-"Underteksting kan være utilgjengelig eller usynkronisert."
+msgstr "Underteksting kan være utilgjengelig eller usynkronisert."
 
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
